@@ -1,0 +1,23 @@
+<div id="search-component">
+    <label for="search-box">Ticket Search</label>
+    <input #searchBox id="search-box"/>
+
+    <nav class="navBar"> 
+        <input class="form-control" type="text" name="id" [(ngModel)]="id" (ngModelChange)="Search()"
+        placeholder="Enter Ticket Id">
+    </nav>
+  
+    <table class="table table-bordered">
+        <tr>
+            <th>Ticket Number</th>
+            <th>Ticket Title</th>
+        </tr>
+    </table>
+    <tbody>
+        <tr *ngFor="let ticket of tickets">
+            <td>{{ticket.id}}</td>
+            <td>{{ticket.title}}</td>
+        </tr>
+    </tbody>
+  </div>
+  
