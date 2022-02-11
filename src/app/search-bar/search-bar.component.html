@@ -1,23 +1,35 @@
 <div id="search-component">
     <label for="search-box">Ticket Search</label>
-    <input #searchBox id="search-box"/>
 
-    <nav class="navBar"> 
-        <input class="form-control" type="text" name="id" [(ngModel)]="id" (ngModelChange)="Search()"
-        placeholder="Enter Ticket Id">
-    </nav>
-  
-    <table class="table table-bordered">
-        <tr>
-            <th>Ticket Number</th>
-            <th>Ticket Title</th>
-        </tr>
+    <mat-form-field appearance="standard">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ticket Number" #input>
+      </mat-form-field>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 demo-table">
+
+        <ng-container matColumnDef="number">
+            <th mat-header-cell *matHeaderCellDef>No.</th>
+            <td mat-cell *matCellDef="let ticket">{{ticket.number}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef>Title</th>
+            <td mat-cell *matCellDef="let ticket">{{ticket.title}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="exists">
+            <th mat-header-cell *matHeaderCellDef>Exists</th>
+            <td mat-cell *matCellDef="let ticket">{{ticket.exists}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="viewTicketDetails(row)"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+          </tr>
+
     </table>
-    <tbody>
-        <tr *ngFor="let ticket of tickets">
-            <td>{{ticket.id}}</td>
-            <td>{{ticket.title}}</td>
-        </tr>
-    </tbody>
-  </div>
-  
+
+</div>
