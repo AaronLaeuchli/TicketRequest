@@ -1,14 +1,15 @@
 export class Tickets{
-    id:string;
+    id:string | undefined;
     number:string;
     title:string;
-    exists:string;
+    exists:boolean;
 
-    constructor(id:string, number:string, title:string, exists:string){
-        this.id = id;
+     constructor(number:string, title:string, exists:boolean){
         this.number = number;
         this.title = title;
         this.exists = exists;
     }
+
+
 
 } 

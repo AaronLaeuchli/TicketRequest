@@ -15,7 +15,6 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 
-import { FormsModule } from '@angular/forms';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -24,6 +23,9 @@ import { DialogTicketDetailComponent } from './dialog-ticket-detail/dialog-ticke
 import { DropdownBtnComponent } from './dropdown-btn/dropdown-btn.component';
 import { MatMenuModule} from '@angular/material/menu';
 import { LandingpageComponent } from './landingpage/landingpage.component';
+import { DialogTicketAddComponent } from './dialog-ticket-add/dialog-ticket-add.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -32,7 +34,8 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
     ToolbarComponent,
     DialogTicketDetailComponent,
     DropdownBtnComponent,
-    LandingpageComponent
+    LandingpageComponent,
+    DialogTicketAddComponent
   ],
   entryComponents: [DialogTicketDetailComponent],
   imports: [
@@ -50,7 +53,9 @@ import { LandingpageComponent } from './landingpage/landingpage.component';
     MatSlideToggleModule,
     MatSidenavModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

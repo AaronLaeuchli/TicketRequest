@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { DialogTicketDetailComponent } from '../dialog-ticket-detail/dialog-ticket-detail.component';
+import { DialogTicketAddComponent } from '../dialog-ticket-add/dialog-ticket-add.component';
 
 @Component({
   selector: 'app-search-bar',
@@ -18,17 +19,18 @@ export class SearchBarComponent implements OnInit {
   tickets: Tickets[] = [];
   title: any;
   id: any;
+  deleteClicked: boolean = false;
 
-  public displayedColumns = ['number', 'title', 'exists'];
+  public displayedColumns = ['number', 'title', 'exists', 'options'];
   public dataSource = new MatTableDataSource<Tickets>();
 
 
-  constructor(private ticketService: TicketService, private router: Router, public dialog: MatDialog) {}
+  constructor(private ticketService: TicketService, private router: Router, public dialog: MatDialog) {
+
+  }
 
 
   ngOnInit(): void {
-    console.log("adsf");
-    
     this.GetTickets();
   }
 
@@ -77,15 +79,28 @@ export class SearchBarComponent implements OnInit {
   TicketExists() {
     this.tickets.forEach(element => {
       this.ticketService.getTicketExists(Number(element.number)).subscribe((r) => {
-        this.ticketService.updateTickets(element, r.toString(), this.tickets);
+        this.ticketService.updateTickets(element, Boolean(r), this.tickets);
       });
 
     })
   }
 
   viewTicketDetails(ticket: Tickets) {
-
+    if (!this.deleteClicked) {
       this.dialog.open(DialogTicketDetailComponent, {data: ticket});   
+    }
+      
+  }
+
+  btnAddClick(){
+    this.dialog.open(DialogTicketAddComponent);
+  }
+
+  btnDeleteClick(ticketNumber: number){
+    this.deleteClicked = true;
+    this.ticketService.deleteTicket(ticketNumber);
+    window.location.reload();
+
   }
 
 
