@@ -15,7 +15,6 @@ export class ToolbarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
   constructor(private themeService: ThemeService, public dialog: MatDialog) {
     this.themeService.initTheme();
     this.isDarkMode = this.themeService.isDarkMode();
@@ -28,5 +27,4 @@ export class ToolbarComponent implements OnInit {
       ? this.themeService.update('light-mode')
       : this.themeService.update('dark-mode');
   }
-
 }

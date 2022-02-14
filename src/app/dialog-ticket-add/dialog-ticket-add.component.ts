@@ -10,13 +10,13 @@ import { TicketService } from '../service/ticket.service';
 })
 export class DialogTicketAddComponent implements OnInit {
 
-  constructor(private formBuilder:FormBuilder, private ticketService:TicketService) { }
+  constructor(private formBuilder: FormBuilder, private ticketService: TicketService) { }
 
-  tickets:Tickets[] | undefined;
+  tickets: Tickets[] | undefined;
 
   profileForm = this.formBuilder.group({
-    ticketNumber:[''],
-    ticketTitle:['']
+    ticketNumber: [''],
+    ticketTitle: ['']
   })
 
   ngOnInit(): void {
@@ -27,16 +27,16 @@ export class DialogTicketAddComponent implements OnInit {
     this.ticketService.getTickets()
       .subscribe(data => {
         console.log(data)
-        this.tickets=data;
-      })      
- 
+        this.tickets = data;
+      })
+
   }
- 
+
   addTicket() {
     var ticketExists = this.ticketService.getTicketExists(this.profileForm.value.ticketNumber);
     this.ticketService.addTicket(this.profileForm.value.ticketNumber, this.profileForm.value.ticketTitle, Boolean(ticketExists)).subscribe(data => {
       console.log(data)
       this.refreshTickets();
-    })      
+    })
   }
 }

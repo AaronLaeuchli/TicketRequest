@@ -1,24 +1,24 @@
 <form [formGroup]="profileForm" class="form-container">
-    <mat-card>
-      <mat-card-header>
-        <mat-card-title>Add Ticket</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-        <div class="row">
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input formControlName="ticketNumber" matInput placeholder="Ticket Number">
-            </mat-form-field>
-          </div>
-          <div class="col-md-6">
-            <mat-form-field class="full-width">
-              <input  formControlName="ticketTitle" matInput placeholder="Ticket Title">
-            </mat-form-field>
-          </div>
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Add Ticket</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="ticketNumber" matInput placeholder="Ticket Number">
+          </mat-form-field>
         </div>
-      </mat-card-content>
-      <mat-card-actions>
-        <button (click)="addTicket()" mat-raised-button color="primary">Save</button>
-      </mat-card-actions>
-    </mat-card>
-  </form>
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="ticketTitle" matInput placeholder="Ticket Title">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="addTicket()" mat-raised-button color="primary">Save</button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -12,8 +12,7 @@ export class TicketService {
   constructor(private http: HttpClient) { }
 
   url: string = "http://localhost:3000/tickets";
-  status:any;
-
+  status: any;
 
   getTickets() {
     return this.http.get<Tickets[]>(this.url);
@@ -23,7 +22,7 @@ export class TicketService {
     return this.http.get("https://localhost:5031/api/v1/tib/ticketChange/TicketExists?TicketId=" + ticketId + "&TicketTypeId=1");
   }
 
-  updateTickets(ticket:Tickets, exists:boolean, ticketList: Tickets[]) {
+  updateTickets(ticket: Tickets, exists: boolean, ticketList: Tickets[]) {
     if (ticket.id === null) {
       this.http.put<Tickets>("http://localhost:3000/tickets", ticket, {
         headers: new HttpHeaders({
@@ -34,20 +33,27 @@ export class TicketService {
       var foundIndex = ticketList.findIndex(e => e.id === ticket.id);
       ticketList[foundIndex].exists = exists;
     }
-
   }
 
-  addTicket(ticketNumber:number, ticketTitle:string, ticketExists:boolean): Observable<any>{
+  addTicket(ticketNumber: number, ticketTitle: string, ticketExists: boolean): Observable<any> {
     var ticket = new Tickets(ticketNumber.toString(), ticketTitle, ticketExists)
-      const headers = { 'content-type': 'application/json'}  
-      const body=JSON.stringify(ticket);
-      window.location.reload();
-      return this.http.post(this.url, body,{'headers':headers});
+
+    const headers = { 'content-type': 'application/json' }
+    const body = JSON.stringify(ticket);
+
+    window.location.reload();
+    return this.http.post(this.url, body, { 'headers': headers });
   }
 
-  deleteTicket(ticketNumber:number){
-    const headers = { 'content-type': 'application/json'}  
-    return this.http.delete(this.url + '/' + ticketNumber, {'headers':headers}).subscribe(() => this.status = 'Delete successful');;
+  deleteTicket(ticketNumber: number) {
+    const headers = { 'content-type': 'application/json' }
+    return this.http.delete(this.url + '/' + ticketNumber,
+      {
+        'headers': headers
+      }
+    )
+      .subscribe(
+        () => this.status = 'Delete successful');;
 
   }
 }

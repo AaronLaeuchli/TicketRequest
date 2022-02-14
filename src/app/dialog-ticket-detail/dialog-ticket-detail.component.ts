@@ -13,15 +13,8 @@ export class DialogTicketDetailComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     this.tickets = data;
-
-    console.log("test: " || data);
-    
-   }
-
-  
+  }
 
   ngOnInit(): void {
   }
-
-
 }

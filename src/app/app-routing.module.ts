@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
 
-
 const routes: Routes = [
   { path: 'landingpage', component: LandingpageComponent },
   { path: 'search-bar', component: SearchBarComponent },

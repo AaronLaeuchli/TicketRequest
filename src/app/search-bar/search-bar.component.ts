@@ -24,11 +24,7 @@ export class SearchBarComponent implements OnInit {
   public displayedColumns = ['number', 'title', 'exists', 'options'];
   public dataSource = new MatTableDataSource<Tickets>();
 
-
-  constructor(private ticketService: TicketService, private router: Router, public dialog: MatDialog) {
-
-  }
-
+  constructor(private ticketService: TicketService, private router: Router, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.GetTickets();
@@ -64,7 +60,6 @@ export class SearchBarComponent implements OnInit {
     }
   }
 
-
   SearchId() {
     if (this.id == null) {
       this.ngOnInit();
@@ -87,21 +82,19 @@ export class SearchBarComponent implements OnInit {
 
   viewTicketDetails(ticket: Tickets) {
     if (!this.deleteClicked) {
-      this.dialog.open(DialogTicketDetailComponent, {data: ticket});   
+      this.dialog.open(DialogTicketDetailComponent, { data: ticket });
     }
-      
+
   }
 
-  btnAddClick(){
+  btnAddClick() {
     this.dialog.open(DialogTicketAddComponent);
   }
 
-  btnDeleteClick(ticketNumber: number){
+  btnDeleteClick(ticketNumber: number) {
     this.deleteClicked = true;
     this.ticketService.deleteTicket(ticketNumber);
     window.location.reload();
 
   }
-
-
 }

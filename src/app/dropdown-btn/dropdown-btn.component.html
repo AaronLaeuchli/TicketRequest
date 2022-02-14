@@ -1,13 +1,13 @@
 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-    <mat-icon>more_vert</mat-icon>
+  <mat-icon>more_vert</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="btnSearchClick()">
+    <mat-icon>search</mat-icon>
+    <span>Search Ticket</span>
   </button>
-  <mat-menu #menu="matMenu">
-      <button mat-menu-item (click)="btnSearchClick()"> 
-      <mat-icon>search</mat-icon>
-      <span>Search Ticket</span>
-    </button>
-    <button mat-menu-item>
-      <mat-icon>check</mat-icon>
-      <span>Check Existence</span>
-    </button>
-  </mat-menu>
+  <button mat-menu-item>
+    <mat-icon>check</mat-icon>
+    <span>Check Existence</span>
+  </button>
+</mat-menu>
