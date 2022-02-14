@@ -11,11 +11,7 @@ export class DropdownBtnComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.btnSearchClick();
   }
 
-  btnSearchClick() {
-    this.router.navigate(['/search-bar']);
-  };
 
 }

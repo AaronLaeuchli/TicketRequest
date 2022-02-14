@@ -2,11 +2,11 @@
   <mat-icon>more_vert</mat-icon>
 </button>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item (click)="btnSearchClick()">
+  <button mat-menu-item routerLink="searchTicket">
     <mat-icon>search</mat-icon>
     <span>Search Ticket</span>
   </button>
-  <button mat-menu-item>
+  <button mat-menu-item routerLink="checkTicket">
     <mat-icon>check</mat-icon>
     <span>Check Existence</span>
   </button>
