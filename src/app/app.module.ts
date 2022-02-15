@@ -11,6 +11,7 @@ import { DialogTicketDetailComponent } from './dialog-ticket-detail/dialog-ticke
 import { DropdownBtnComponent } from './dropdown-btn/dropdown-btn.component';
 import { LandingpageComponent } from './landingpage/landingpage.component';
 import { DialogTicketAddComponent } from './dialog-ticket-add/dialog-ticket-add.component';
+import { TicketExistsComponent } from './ticket-exists/ticket-exists.component';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -27,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +37,8 @@ import { MatCardModule } from '@angular/material/card';
     DialogTicketDetailComponent,
     DropdownBtnComponent,
     LandingpageComponent,
-    DialogTicketAddComponent
+    DialogTicketAddComponent,
+    TicketExistsComponent
   ],
   entryComponents: [DialogTicketDetailComponent],
   imports: [

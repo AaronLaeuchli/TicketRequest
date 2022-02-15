@@ -33,17 +33,16 @@ export class SearchBarComponent implements OnInit {
   GetTickets() {
     this.ticketService.getTickets().subscribe((response) => {
       console.log(response);
-
       this.dataSource.data = response;
       this.tickets = response;
       this.TicketExists();
-    })
+    });
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filterPredicate = function (data, filter: string): boolean {
-      return data.number.toLowerCase().includes(filter);
+      return data.ticketId.toLowerCase().includes(filter);
     };
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -55,7 +54,7 @@ export class SearchBarComponent implements OnInit {
     }
     else {
       this.tickets = this.tickets.filter(f => {
-        return f.title.toLocaleLowerCase().match(this.title.toLocaleLowerCase());
+        return f.ticketTitle.toLocaleLowerCase().match(this.title.toLocaleLowerCase());
       });
     }
   }
@@ -66,14 +65,14 @@ export class SearchBarComponent implements OnInit {
     }
     else {
       this.tickets = this.tickets.filter(f => {
-        return f.number.toString().toLocaleLowerCase().match(this.id.toString().toLocaleLowerCase());
+        return f.ticketId.toString().toLocaleLowerCase().match(this.id.toString().toLocaleLowerCase());
       });
     }
   }
 
   TicketExists() {
     this.tickets.forEach(element => {
-      this.ticketService.getTicketExists(Number(element.number)).subscribe((r) => {
+      this.ticketService.getTicketExists(Number(element.ticketId)).subscribe((r) => {
         this.ticketService.updateTickets(element, Boolean(r), this.tickets);
       });
 

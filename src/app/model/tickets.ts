@@ -1,12 +1,14 @@
 export class Tickets {
     id: string | undefined;
-    number: string;
-    title: string;
+    ticketId: string;
+    ticketTitle: string;
     exists: boolean;
+    workflowstate: string | undefined;
 
-    constructor(number: string, title: string, exists: boolean) {
-        this.number = number;
-        this.title = title;
+    constructor(ticketId: string, ticketTitle: string, exists: boolean, workflowstate?: string ) {
+        this.ticketId = ticketId;
+        this.ticketTitle = ticketTitle;
         this.exists = exists;
+        this.workflowstate = workflowstate;
     }
 }

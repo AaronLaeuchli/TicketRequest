@@ -6,9 +6,9 @@ body {
     margin-top: -250PX;
 }
 
-button.mat-menu-item {
-    display:inline-block;
+.mat-form-field{
+    display: flex;
     justify-content: center;
     flex-direction: row;
-    width: 5%;
 }
+

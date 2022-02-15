@@ -22,6 +22,14 @@ export class TicketService {
     return this.http.get("https://localhost:5031/api/v1/tib/ticketChange/TicketExists?TicketId=" + ticketId + "&TicketTypeId=1");
   }
 
+  getRBTickets(){
+    console.log("get rb tickets");
+    
+    console.log(this.http.get<Tickets[]>("https://localhost:5031/api/v1/tib/ticketChange/getTickets"));
+    
+    return this.http.get<Tickets[]>("https://localhost:5031/api/v1/tib/ticketChange/getTickets");
+  }
+
   updateTickets(ticket: Tickets, exists: boolean, ticketList: Tickets[]) {
     if (ticket.id === null) {
       this.http.put<Tickets>("http://localhost:3000/tickets", ticket, {
@@ -46,6 +54,7 @@ export class TicketService {
   }
 
   deleteTicket(ticketNumber: number) {
+    console.log("detlete ticketnumber: " + ticketNumber);
     const headers = { 'content-type': 'application/json' }
     return this.http.delete(this.url + '/' + ticketNumber,
       {
