@@ -1,6 +1,12 @@
 {
   "dependencies": {
+    "@angular-devkit/build-angular": "^13.2.4",
     "@angular/animations": "^13.2.2",
+    "@angular/cdk": "^13.2.3",
+    "@angular/cli": "^13.2.4",
+    "@angular/forms": "^13.0.0 || ^14.0.0-0",
+    "@angular/material": "^13.2.3",
+    "@angular/platform-browser": "^13.2.3",
     "@material/data-table": "^13.0.0",
     "@material/dialog": "^13.0.0",
     "json-server": "^0.17.0",
