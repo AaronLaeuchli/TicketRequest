@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { RouterLink } from '@angular/router';
 
-import { ThemeService } from 'src/app/service/theme.service'
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-toolbar',

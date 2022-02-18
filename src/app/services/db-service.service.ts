@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
-import { Tickets } from '../model/tickets'
-
+import { Tickets } from 'src/app/model/tickets';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TicketService {
+export class DbServiceService {
 
   constructor(private http: HttpClient) { }
 
@@ -16,18 +15,6 @@ export class TicketService {
 
   getTickets() {
     return this.http.get<Tickets[]>(this.url);
-  }
-
-  getTicketExists(ticketId: number) {
-    return this.http.get("https://localhost:5031/api/v1/tib/ticketChange/TicketExists?TicketId=" + ticketId + "&TicketTypeId=1");
-  }
-
-  getRBTickets(){
-    console.log("get rb tickets");
-    
-    console.log(this.http.get<Tickets[]>("https://localhost:5031/api/v1/tib/ticketChange/getTickets"));
-    
-    return this.http.get<Tickets[]>("https://localhost:5031/api/v1/tib/ticketChange/getTickets");
   }
 
   updateTickets(ticket: Tickets, exists: boolean, ticketList: Tickets[]) {
@@ -55,6 +42,7 @@ export class TicketService {
 
   deleteTicket(ticketNumber: number) {
     console.log("detlete ticketnumber: " + ticketNumber);
+    
     const headers = { 'content-type': 'application/json' }
     return this.http.delete(this.url + '/' + ticketNumber,
       {
@@ -63,6 +51,5 @@ export class TicketService {
     )
       .subscribe(
         () => this.status = 'Delete successful');;
-
   }
 }

@@ -3,7 +3,8 @@ import { FormBuilder } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { Tickets } from '../model/tickets';
-import { TicketService } from '../service/ticket.service';
+import { DbServiceService } from '../services/db-service.service';
+import { TibServiceService } from '../services/tib-service.service';
 
 @Component({
   selector: 'app-dialog-ticket-add',
@@ -17,7 +18,7 @@ export class DialogTicketAddComponent implements OnInit {
   ticketNumber:any;
   ticketTitle:any;
 
-  constructor(private formBuilder: FormBuilder, private ticketService: TicketService) {
+  constructor(private formBuilder: FormBuilder, private tibService: TibServiceService, private dbService: DbServiceService) {
     this.getRBTickets();
    }
 
@@ -33,7 +34,7 @@ export class DialogTicketAddComponent implements OnInit {
   }
 
   refreshTickets() {
-    this.ticketService.getTickets()
+    this.dbService.getTickets()
       .subscribe(data => {
         console.log(data)
         this.tickets = data;
@@ -42,15 +43,17 @@ export class DialogTicketAddComponent implements OnInit {
   }
 
   addTicket() {
-    var ticketExists = this.ticketService.getTicketExists(this.profileForm.value.ticketNumber);
-    this.ticketService.addTicket(this.profileForm.value.ticketNumber, this.profileForm.value.ticketTitle, Boolean(ticketExists)).subscribe(data => {
+    var ticketExists = this.tibService.getTicketExists(this.profileForm.value.ticketNumber);
+    console.log("ticketNumber: " + this.profileForm.value.ticketNumber);
+    
+    this.dbService.addTicket(this.profileForm.value.ticketNumber, this.profileForm.value.ticketTitle, Boolean(ticketExists)).subscribe(data => {
       console.log(data)
       this.refreshTickets();
     })
   }
 
   getRBTickets() {
-    this.ticketService.getRBTickets().subscribe((response) => {
+    this.tibService.getRBTickets().subscribe((response) => {
       console.log(response);
       this.dataSource.data = response;
       this.tickets = response;

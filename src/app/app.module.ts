@@ -19,11 +19,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatFormFieldModule, MatLabel } from "@angular/material/form-field";
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
@@ -44,7 +43,6 @@ import { MatCardModule } from '@angular/material/card';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserModule,
     MatToolbarModule,
     MatIconModule,
     MatTableModule,
@@ -55,7 +53,6 @@ import { MatCardModule } from '@angular/material/card';
     MatInputModule,
     MatDialogModule,
     MatSlideToggleModule,
-    MatSidenavModule,
     MatButtonModule,
     MatMenuModule,
     ReactiveFormsModule,

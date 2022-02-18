@@ -2,10 +2,17 @@
     <h2>Check if Ticket exists</h2>
     <h3>aal Angular Test Project</h3>
 
-    <div>
-        <mat-form-field appearance="standard">
-            <mat-label>Search</mat-label>
-            <input matInput placeholder="Ticket Number" #input>
-        </mat-form-field>
-    </div>
+    <form [formGroup]="profileForm" class="form-container" >
+        <div>
+            <mat-form-field appearance="standard">
+                <mat-label>Search</mat-label>
+                <input formControlName="ticketNumber" matInput placeholder="Ticket Number" #input>
+            </mat-form-field>
+            <button mat-icon-button color="primary" aria-label="Example icon button with a home icon"
+                (click)="btnTicketExists()">
+                <mat-icon>search</mat-icon>
+            </button>
+        </div>
+    </form>
+    <p>{{ticketExists}}</p>
 </body>

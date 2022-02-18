@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Tickets } from '../model/tickets';
-import { TicketService } from '../service/ticket.service';
 
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from '@angular/router';
@@ -8,6 +7,8 @@ import { Router } from '@angular/router';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { DialogTicketDetailComponent } from '../dialog-ticket-detail/dialog-ticket-detail.component';
 import { DialogTicketAddComponent } from '../dialog-ticket-add/dialog-ticket-add.component';
+import { TibServiceService } from '../services/tib-service.service';
+import { DbServiceService } from '../services/db-service.service';
 
 @Component({
   selector: 'app-search-bar',
@@ -24,14 +25,14 @@ export class SearchBarComponent implements OnInit {
   public displayedColumns = ['number', 'title', 'exists', 'options'];
   public dataSource = new MatTableDataSource<Tickets>();
 
-  constructor(private ticketService: TicketService, private router: Router, public dialog: MatDialog) {}
+  constructor(private tibService: TibServiceService, private dbService: DbServiceService, private router: Router, public dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.GetTickets();
   }
 
   GetTickets() {
-    this.ticketService.getTickets().subscribe((response) => {
+    this.dbService.getTickets().subscribe((response) => {
       console.log(response);
       this.dataSource.data = response;
       this.tickets = response;
@@ -72,8 +73,8 @@ export class SearchBarComponent implements OnInit {
 
   TicketExists() {
     this.tickets.forEach(element => {
-      this.ticketService.getTicketExists(Number(element.ticketId)).subscribe((r) => {
-        this.ticketService.updateTickets(element, Boolean(r), this.tickets);
+      this.tibService.getTicketExists(Number(element.ticketId)).subscribe((r) => {
+        this.dbService.updateTickets(element, Boolean(r), this.tickets);
       });
 
     })
@@ -92,7 +93,7 @@ export class SearchBarComponent implements OnInit {
 
   btnDeleteClick(ticketNumber: number) {
     this.deleteClicked = true;
-    this.ticketService.deleteTicket(ticketNumber);
+    this.dbService.deleteTicket(ticketNumber);
     window.location.reload();
 
   }
